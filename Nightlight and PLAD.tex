@@ -1,0 +1,37 @@
+\documentclass[12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{natbib}
+\usepackage{setspace}
+\usepackage{hyperref}
+
+\doublespacing
+\date{}
+
+\title{Do Leaders Export Pollution While Importing Wealth? \\ 
+\large Evidence of ``Green Favoritism'' in Autocratic Political Economies}
+\author{Richard Schulz \and Ruby Wang \and Muhammad Altaf}
+
+\begin{document}
+\maketitle
+
+\section{Matching NightLight with the PLAD dataset balabala...}
+First, I tried to download the GADM data. The PLAD dataset uses version 3.6 of GADM, but this version is not available for normal download from the official website. I tried two approaches:
+
+I continued searching for alternative sources and found over 200 country-specific files in the UC Davis database. After manually uploading dozens of them, I noticed that the failure rate when running them in Google Earth Engine was relatively high.
+I tried using GADM versions 2.8 and 4.0 instead, but the geometric boundaries in these versions have changed, which reduces the accuracy of data matching.
+
+Therefore, I decided to use the built-in GAUL (2015) dataset in Google Earth Engine, which runs smoothly. Next, I compared the collected dataset with PLAD. I first performed matching based on country names and found that 16 countries in PLAD could not be matched. Among them, 14 were due to minor inconsistencies in name spelling, so I created a mapping table to manually reconcile them. Kosovo and Northern Cyprus had no corresponding entries in the nightlight dataset. Considering their political context, development characteristics, data limitations, and small sample sizes (Kosovo: 8 records; Northern Cyprus: 6 records), I decided to exclude them.Then, I conducted matching at the provincial level and encountered more significant issues. The exact match rate between PLAD and the nightlight dataset was only 57% (387 regions). The discrepancies were caused by several factors: some names contained encoding issues (e.g., diacritics), the same regions were labeled differently across datasets, and GADM 3.6 and GAUL (2015) follow different inclusion rules. I attempted to resolve this by constructing a mapping table for manual matching, which improved the results to some extent. However, administrative boundaries within countries may have changed, making it difficult to achieve complete accuracy through manual matching. Ultimately, I used the latitude and longitude data in the PLAD dataset to locate and match the corresponding provinces.
+To achieve precise matching, we exported the GAUL GeoJSON files from Google Earth Engine. We also encountered some difficulties in this process. For example, certain regions, such as North America and North Asia, exceeded the download limits. To address this, we repeatedly broke the data down into smaller subsets, downloaded them in multiple batches, and then aggregated the data locally.
+
+balabala…….........................
+
+I repeatedly split North America and North Asia into smaller parts, but the process was too time-consuming. As a result, the remaining unmatched cases in these regions were mainly handled through manual matching. In fact, the number of such cases was relatively small. The United States and Mauritius matched perfectly, while Canada only required manual matching for two names with special characters. However, Cape Verde follows a completely different naming convention, and four entries could not be matched.
+
+\section{Results}
+\input{descriptive_stats}
+
+\end{document}
