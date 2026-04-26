@@ -1,0 +1,209 @@
+% =========================================================
+% 10-minute presentation slides
+% Regional Favoritism in Later Periods:
+% Nightlights and Pollution in Leader Birth Regions
+% Schulz, Altaf, and Wang
+% =========================================================
+\documentclass[10pt,aspectratio=169]{beamer}
+
+\usetheme{metropolis}
+\usepackage{booktabs}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage{hyperref}
+
+% AER-style: no paragraph indent (irrelevant in beamer, kept for parity)
+\setlength{\parindent}{0pt}
+
+% Cleaner alert color
+\definecolor{myalert}{RGB}{200,30,40}
+\setbeamercolor{alerted text}{fg=myalert}
+
+\title{Regional Favoritism in Later Periods}
+\subtitle{Nightlights and Pollution in Leader Birth Regions}
+\author{Richard Schulz \and Muhammad Majid Altaf \and Ruby Wang}
+\institute{University of California, Berkeley}
+\date{} % no date on title slide
+
+\begin{document}
+
+% --------- Slide 1: Title ---------
+\begin{frame}
+  \titlepage
+\end{frame}
+
+% --------- Slide 2: Motivation ---------
+\begin{frame}{Motivation}
+\begin{itemize}
+  \item Hodler \& Raschky (2014): political leaders direct economic activity toward their \textbf{birth regions}, visible in subnational nightlights.
+  \item Recent literature increasingly uses \textbf{post-2005 annual windows} and the \textbf{harmonized DMSP--VIIRS} panel.
+  \item These windows overlap with global pollution measures (NO\textsubscript{2}, PM\textsubscript{2.5}).
+  \item[$\Rightarrow$] \alert{Does the canonical birth-region reduced form still appear in later windows?}
+\end{itemize}
+\end{frame}
+
+% --------- Slide 3: Contributions ---------
+\begin{frame}{What This Paper Does}
+\begin{enumerate}
+  \item Documents \textbf{post-2005 attenuation} of the birth-region nightlights effect:
+  \begin{itemize}
+    \item across a window grid, and
+    \item across theory-favored subsamples (geography, tenure, autocracy, headroom).
+  \end{itemize}
+  \item Tests a \textbf{green favoritism} hypothesis --- did favoritism shift from \textit{quantity} to \textit{composition} (cleaner growth)?
+  \item Situates findings against recent replications (Bora 2025; D\"uben, Hodler \& Raschky 2026): pooled long samples may mask later-period attenuation.
+\end{enumerate}
+\end{frame}
+
+% --------- Slide 4: Data ---------
+\begin{frame}{Data}
+Global ADM2 district-year panel combining:
+\begin{itemize}
+  \item \textbf{PLAD}: leader identity, spell timing, subnational birthplace.
+  \item \textbf{Nightlights}: DMSP 1992--2013; harmonized DMSP--VIIRS 2005--2019.
+  \item \textbf{NO\textsubscript{2}}: ACAG surface NO\textsubscript{2}, 2005--2019.
+  \item \textbf{PM\textsubscript{2.5}}: ACAG SatPM, longer-window extension.
+  \item \textbf{Geography}: GADM ADM2 boundaries.
+\end{itemize}
+\vspace{0.4em}
+\textit{Treatment} ($\text{BirthRegionLeader}_{ict}$): district $i$ in country $c$ is the birth region of the leader in office in year $t$. Overlapping spells truncated.
+\end{frame}
+
+% --------- Slide 5: Specification ---------
+\begin{frame}{Empirical Specification}
+\[
+\log(Y_{ict} + 0.01) \;=\; \beta\,\text{BirthRegionLeader}_{ict} \;+\; \alpha_i \;+\; \gamma_{ct} \;+\; \varepsilon_{ict}
+\]
+
+\begin{itemize}
+  \item $\alpha_i$: ADM2 fixed effects \quad $\gamma_{ct}$: country-year fixed effects
+  \item $\beta$ identified from variation \textit{within} country-year, across districts.
+  \item Standard errors clustered by \textbf{leader spell} (baseline); country-clustered as robustness.
+  \item Report lag-0, 1, 2; main text focuses on lag-0.
+\end{itemize}
+
+\vspace{0.3em}
+Pollution-intensity outcome:
+\[
+\log(\text{Pollution}+0.01) - \log(\text{Nightlights}+0.01).
+\]
+Negative $\beta$ would indicate \textit{cleaner} birth-region growth.
+\end{frame}
+
+% --------- Slide 6: DMSP replication holds ---------
+\begin{frame}{The Long DMSP Replication Holds}
+\centering
+\small
+\begin{tabular}{lccc}
+\toprule
+Window & Coef. & SE & $p$-value \\
+\midrule
+1992--2013 & 0.0128 & 0.0059 & 0.030 \\
+1995--2013 & 0.0187 & 0.0055 & 0.001 \\
+2000--2013 & 0.0110 & 0.0058 & 0.056 \\[2pt]
+\rowcolor{black!7} 2005--2013 & 0.0017 & 0.0058 & 0.768 \\
+\rowcolor{black!7} 2005--2019 & 0.0004 & 0.0087 & 0.966 \\
+\bottomrule
+\end{tabular}
+\vspace{0.6em}
+\begin{itemize}
+  \item Long DMSP: $\approx 1.3\%$ activity premium in birth regions, in line with original literature.
+  \item \alert{Later windows (shaded): near zero and statistically uninformative.}
+\end{itemize}
+\end{frame}
+
+% --------- Slide 7: Window grid evidence ---------
+\begin{frame}{Attenuation Is Broad: Window-Grid Evidence}
+\begin{columns}[T,onlytextwidth]
+\begin{column}{0.55\textwidth}
+\begin{itemize}\small
+  \item Each cell: a separate ADM2 + country-year FE regression on a (start, end) window.
+  \item DMSP grid: a \textbf{block of positive estimates} concentrated in earlier starts and late-2000s/early-2010s ends.
+  \item Harmonized 2005--2019 grid: \textbf{small and uninformative throughout.}
+  \item[$\Rightarrow$] Not a single bad endpoint --- a \textit{period-wide} attenuation.
+\end{itemize}
+\end{column}
+\begin{column}{0.45\textwidth}
+\centering
+\includegraphics[width=\linewidth]{figures/first_stage_window_grid}
+\end{column}
+\end{columns}
+\end{frame}
+
+% --------- Slide 8: Why does it attenuate? ---------
+\begin{frame}{Diagnostics: Why Does the Effect Attenuate?}
+We narrow, but do not pin down, the explanation:
+\begin{itemize}
+  \item \textbf{Not a harmonization artifact.} VIIRS-only 2018--2023: lag-0 = 0.0038 ($p=0.722$).
+  \item \textbf{Political composition} shifts only modestly.
+  \item \textbf{Shorter spell support}: avg.\ active years per spell 5.22 (1992--2013) vs.\ 3.97 (2005--2013) --- partly mechanical.
+  \item \textbf{Headroom}: median treated DMSP DN $=16.84$ vs.\ untreated $=8.83$; treated upper tail near the saturation ceiling.
+  \item \textbf{Geocoding quality} stable across periods.
+\end{itemize}
+\end{frame}
+
+% --------- Slide 9: Heterogeneity ---------
+\begin{frame}{No Post-2005 Subsample Restores the Effect}
+\textbf{Long DMSP (1992--2013):}
+\begin{itemize}
+  \item Africa: 0.0428 ($p=0.009$); Sub-Saharan Africa: 0.0442 ($p=0.011$).
+  \item Non-SSA: 0.0053 ($p=0.370$). \emph{Effect lives where the original literature said it would.}
+\end{itemize}
+
+\vspace{0.3em}
+\textbf{Post-2005:}
+\begin{itemize}
+  \item Africa, SSA in DMSP 2005--2013: \textit{negative} and insignificant.
+  \item Long-tenure autocrats; drop top 10\% luminosity; high baseline NO\textsubscript{2} countries: all near zero.
+  \item Most suggestive: Harmonized 2005--2019 SSA $=0.0315$ ($p=0.135$) --- still below our minimum-support threshold ($\beta\geq 0.005$, $p<0.10$).
+\end{itemize}
+\end{frame}
+
+% --------- Slide 10: Green favoritism test ---------
+\begin{frame}{Did Favoritism Shift to \textit{Cleaner} Growth?}
+\textbf{Green favoritism:} pollution intensity should \textit{fall} in birth regions even when nightlights do not rise.
+
+\vspace{0.4em}
+\centering
+\small
+\begin{tabular}{lccc}
+\toprule
+Outcome (2005--2019, lag 0) & Coef. & SE & $p$ \\
+\midrule
+$\log(\text{Nightlights}+0.01)$            & $-0.0026$ & 0.0091 & 0.778 \\
+$\log(\text{NO}_2+0.01)$                   & $\phantom{-}0.0308$  & 0.0154 & 0.045 \\
+NO\textsubscript{2} pollution intensity    & $\phantom{-}0.0333$  & 0.0179 & 0.063 \\
+PM\textsubscript{2.5} intensity (lag 0)    & $\phantom{-}0.0041$  & 0.0095 & 0.665 \\
+\bottomrule
+\end{tabular}
+
+\vspace{0.5em}
+\begin{itemize}
+  \item Pollution coefficients are \alert{zero to positive --- not negative}.
+  \item Africa/SSA intensity points are negative but imprecise (cannot carry the story).
+  \item NO\textsubscript{2} loses precision under country clustering: read as \textit{suggestive against} green favoritism.
+\end{itemize}
+\end{frame}
+
+% --------- Slide 11: Discussion ---------
+\begin{frame}{Takeaways}
+\begin{itemize}
+  \item Post-2005 attenuation of the birth-region nightlights effect is \textbf{broad}: window grid, geography, tenure, autocracy, headroom, pollution support.
+  \item Long DMSP replication \textbf{still holds}, especially in Africa / Sub-Saharan Africa.
+  \item Pollution evidence \textbf{rules out} a simple shift toward greener birth-region growth.
+  \item Historical 95\% CIs contain the post-2005 points $\Rightarrow$ \textit{loss of detectable signal}, not proven absence.
+  \item Diagnostic contribution: long pooled samples may mask period-specific attenuation.
+\end{itemize}
+\end{frame}
+
+% --------- Slide 12: Thank you ---------
+\begin{frame}{Thank You}
+\centering
+\Large Questions?
+
+\vspace{0.6em}
+\small We thank Professor Joshua Blumenstock for feedback.
+\end{frame}
+
+\end{document}
